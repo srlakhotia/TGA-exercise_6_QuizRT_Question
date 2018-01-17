@@ -6,6 +6,11 @@ const getQuestions = function (parameters, done) {
 
 };
 
-module.exports = {
-    getQuestions
+const addNewQuestion = function() {
+
 };
+
+module.exports = {
+    getQuestions,
+    addNewQuestion
+}

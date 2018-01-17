@@ -7,10 +7,10 @@ let schema = new mongoose.Schema({
     topics: [ {type: String} ],
     options: [{
         _id: { type: Number, required: true },
-        text: { type: String, required: true }
+        answer: { type: String, required: true }
     }],
     correctOption: Number,
-    lod: { type: String, required: true, enum: lod, default: "medium" },
+    difficulty: { type: String, required: true, enum: lod, default: "medium" },
     analytics: {
         ansTime: { type: Number, required: true },
         correctness: { type: Number, required: true, min: 0, max: 100, default: 100 },

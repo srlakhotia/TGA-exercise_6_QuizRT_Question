@@ -6,8 +6,8 @@ const getQuestions = function (parameters, done) {
 
 };
 
-const addNewQuestion = function() {
-
+const addNewQuestion = function(questionData, done) {
+    questionService.addNewQuestion(questionData, done);
 };
 
 module.exports = {

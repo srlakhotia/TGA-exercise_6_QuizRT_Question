@@ -17,7 +17,7 @@ let schema = new mongoose.Schema({
         askedCount: { type: Number, required: true, default: 0 },
         lastAsked: { type: Date, default: null }
     }
-}, { collection: 'question' });
+}, { collection: 'questions' });
 
 
-module.exports = mongoose.model('question', schema);
+module.exports = mongoose.model('questions', schema);

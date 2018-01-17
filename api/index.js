@@ -1,5 +1,5 @@
 const router = require('express').Router();
 
-router.use('/questions', require('./question'));
+router.use('/questions', require('./questions'));
 
 module.exports = router;

@@ -1,4 +1,4 @@
-const router = require('routers');
+const router = require('express').Router();
 const controller = require('./questions.router');
 
 // topic, level of difficulty, number of questions
@@ -18,8 +18,10 @@ router.get('/', function(req, res){
             return;
         })*/
     } catch (err) {
-       /* console.error('Unexpected error in GET of vendors, ERROR::', err);
-        res.status(500).send({error: 'Unexpected internal error, please try later..!'});*/
+        console.error('Unexpected error in GET of vendors, ERROR::', err);
+        res.status(500).send({error: 'Unexpected internal error, please try later..!'});
         return;
     }
 });
+
+module.exports = router;

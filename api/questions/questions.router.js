@@ -3,9 +3,13 @@ const controller = require('./questions.router');
 
 // topic, level of difficulty, number of questions
 router.get('/', function(req, res){
+    console.log("routing here");
     try {
+        console.log(req);
         let reqParams = req;
-        console.log(reqParams);
+        res.send("hello");
+
+
         /*controller.getQuestions({
 
             } ,function (err, result) {

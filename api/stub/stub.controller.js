@@ -19,7 +19,7 @@ const addNewStub = function(stubData, done) {
 };
 
 const getStub = function(params, done) {
-    done(null, 'mock');
+    stubService.getStub(params, done);
 };
 
 module.exports = {

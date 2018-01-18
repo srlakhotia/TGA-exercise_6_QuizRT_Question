@@ -1,7 +1,7 @@
 const QuestionModel = require('./questions.entity');
 
-const addNewQuestion = function(questionData, done) {
-    questionData.save((err, savedQuestion) => {
+const addNewQuestion = function(questionInstance, done) {
+    questionInstance.save((err, savedQuestion) => {
         if(err) {
             console.error('Error Saving question:', question.label);
             done(err);

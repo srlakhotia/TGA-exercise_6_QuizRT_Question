@@ -1,25 +1,7 @@
 const QuestionModel = require('./questions.entity');
 
-const addNewQuestion = function(questionData, done) {
-    let question = new QuestionModel();
-
-    question.label = questionData.label;
-    question.image = questionData.image;
-    question.topics = questionData.topics;
-    // question.options = questionData.options;
-    question.options = [];
-    questionData.options.forEach((questionOption) => {
-        question.options.push(questionOption);
-    });
-    question.correctOption = questionData.correctOption;
-    question.difficulty = questionData.difficulty;
-    question.analytics = {};
-    question.analytics.ansTime = questionData.ansTime;
-    question.analytics.correctness = questionData.correctness;
-    question.analytics.askedCount = questionData.askedCount;
-    question.analytics.lastAsked = questionData.lastAsked;
-
-    question.save((err, savedQuestion) => {
+const addNewQuestion = function(questionInstance, done) {
+    questionInstance.save((err, savedQuestion) => {
         if(err) {
             console.error('Error Saving question:', question.label);
             done(err);
@@ -32,20 +14,23 @@ const addNewQuestion = function(questionData, done) {
 
 
 const getQuestions = function (params, done) {
-        let query = {"code": params.topic},
+    let query = {
+            "topics": params.topic,
+            "difficulty": params.difficulty || "medium"
+        },
         fieldOptions = null,
         page = 1,
-        limit = params.count;
+        limit = typeof params.count !== 'undefined' ? parseInt(params.count, 10) : 10;
 
     QuestionModel
         .find(query)
-        .sort({ "topic": -1})
+        .sort({ "topics": -1})
         .select(fieldOptions)
         .skip((page > 0) ? limit * (page - 1) : 0)
         .limit(limit)
         .exec((err, colln) => {
             if (err) {
-                console.error('Error in showing questions list, ERRORS::', err, ' queried  ', q);
+                console.error('Error in showing questions list, ERRORS::', err, ' queried  ', query);
                 done(err);
                 return;
             }
@@ -55,5 +40,6 @@ const getQuestions = function (params, done) {
 
 
 module.exports = {
-    addNewQuestion
+    addNewQuestion,
+    getQuestions
 }

@@ -1,10 +1,7 @@
 const questionService = require('./questions.service');
-const publishService = require('../../event-pubsub/publish');
 const QuestionModel = require('./questions.entity');
 
 const getQuestions = function (parameters, done) {
-    publishService.onQuestionAdd(parameters);
-
     questionService.getQuestions(parameters, done);
 };
 

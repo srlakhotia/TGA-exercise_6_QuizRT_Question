@@ -10,4 +10,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(require('./api'));
 app.listen(3000, () => console.log('App listening on port 3000!'));
 
+const pbInstance = require('./event-pubsub/subscribe');
+
 module.exports = app;

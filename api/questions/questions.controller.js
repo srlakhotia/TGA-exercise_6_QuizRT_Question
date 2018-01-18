@@ -1,13 +1,28 @@
 const questionService = require('./questions.service');
+const QuestionModel = require('./questions.entity');
+
 const getQuestions = function (parameters, done) {
     questionService.getQuestions(parameters, done);
-    //return done(null, parameters);
-    //return "question.controllers: You are here";
-
 };
 
 const addNewQuestion = function(questionData, done) {
-    questionService.addNewQuestion(questionData, done);
+    let question = new QuestionModel();
+
+    question.label = questionData.label;
+    question.image = questionData.image;
+    question.topics = questionData.topics;
+    question.options = [];
+    questionData.options.forEach((questionOption) => {
+        question.options.push(questionOption);
+    });
+    question.correctOption = questionData.correctOption;
+    question.difficulty = questionData.difficulty || question.difficulty;
+    question.analytics.ansTime = questionData.analytics.ansTime || question.analytics.ansTime;
+    question.analytics.correctness = questionData.analytics.correctness || question.analytics.correctness;
+    question.analytics.askedCount = questionData.analytics.askedCount || question.analytics.askedCount;
+    question.analytics.lastAsked = questionData.analytics.lastAsked || question.analytics.lastAsked;
+
+    questionService.addNewQuestion(question, done);
 };
 
 const updateQuestion = (params, done) => {

@@ -28,5 +28,6 @@ const getStub = function(params, done) {
 };
 
 module.exports = {
-    addNewStub
+    addNewStub,
+    getStub
 };

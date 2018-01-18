@@ -30,6 +30,30 @@ const addNewQuestion = function(questionData, done) {
     });
 };
 
+
+const getQuestions = function (params, done) {
+        let query = {"code": params.topic},
+        fieldOptions = null,
+        page = 1,
+        limit = params.count;
+
+    QuestionModel
+        .find(query)
+        .sort({ "topic": -1})
+        .select(fieldOptions)
+        .skip((page > 0) ? limit * (page - 1) : 0)
+        .limit(limit)
+        .exec((err, colln) => {
+            if (err) {
+                console.error('Error in showing questions list, ERRORS::', err, ' queried  ', q);
+                done(err);
+                return;
+            }
+            done(null, colln);
+        });
+}
+
+
 module.exports = {
     addNewQuestion
 }

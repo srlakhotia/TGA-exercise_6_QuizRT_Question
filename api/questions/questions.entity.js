@@ -12,9 +12,9 @@ let schema = new mongoose.Schema({
     correctOption: Number,
     difficulty: { type: String, required: true, enum: lod, default: "medium" },
     analytics: {
-        ansTime: { type: Number, required: true },
-        correctness: { type: Number, required: true, min: 0, max: 100, default: 100 },
-        askedCount: { type: Number, required: true, default: 0 },
+        ansTime: { type: Number },
+        correctness: { type: Number, min: 0, max: 100, default: 100 },
+        askedCount: { type: Number, default: 0 },
         lastAsked: { type: Date, default: null }
     }
 }, { collection: 'questions' });

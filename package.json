@@ -21,9 +21,12 @@
     "async": "^2.6.0",
     "body-parser": "^1.18.2",
     "express": "^4.16.2",
+    "express-react-views": "^0.10.5",
     "mongoose": "^4.13.9",
-    "wikidata-sdk": "^5.7.5",
-    "node-redis-pubsub": "^2.0.0"
+    "node-redis-pubsub": "^2.0.0",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "wikidata-sdk": "^5.7.5"
   },
   "devDependencies": {
     "nodemon": "^1.14.11"

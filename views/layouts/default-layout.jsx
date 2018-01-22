@@ -1,5 +1,4 @@
 var React = require('react');
-var Navigation = require('../navigation/index');
 
 class DefaultLayout extends React.Component {
     render() {
@@ -12,11 +11,7 @@ class DefaultLayout extends React.Component {
                     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
                 </head>
                 <body>
-                    <Navigation></Navigation>
-
-                    <div className="container">
-                        {this.props.children}
-                    </div>
+                    {this.props.children}
                 </body>
             </html>
         );

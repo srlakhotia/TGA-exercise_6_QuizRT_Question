@@ -35,11 +35,14 @@ class addStubForm extends React.Component {
                     <label htmlFor="distractorQuery">Distractor Query</label>
                     <textarea name="distractorQuery" id="distractorQuery" className="form-control" ref={(input) => { this.topicName = input; }}></textarea>
                 </div>
+                <input type="hidden" value="3" name="numberOfDistractors" id="numberOfDistractors" />
 
                 <div className="form-group">
                     <button type="submit" className="btn btn-primary">Execute Stub : do the magic</button>
                 </div>
-                <input type="hidden" value="3" name="numberOfDistractors" id="numberOfDistractors" />
+                <div id="stub-add-success" style={{display: 'none'}} className="alert alert-success">
+                    <strong>Success!</strong> Stub has been saved successfully.
+                </div>
             </form>
             )
 

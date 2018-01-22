@@ -10,10 +10,12 @@ const addNewStub = function(stubData, done) {
     stub.topic = stubData.topic;
     stub.distractors.numberOfDistractors = stubData.distractors.numberOfDistractors;
     stub.distractors.distractorQuery = stubData.distractors.distractorQuery;
-    stub.distractors.distractorList = [];
-    stubData.distractors.distractorList.forEach((st) => {
-        stub.distractors.distractorList.push(st);
-    });
+    //Placeholder for distractor fields
+    stub.distractors.distractorResponse = stubData.distractors.distractorResponse;
+   // stub.distractors.distractorList = [];
+    /* stubData.distractors.distractorList.forEach((st) => {
+        stub.distractors.distractorList.push(st); */
+    // });
 
     stubService.addNewStub(stub, done);
 };

@@ -8,7 +8,7 @@ let schema = new mongoose.Schema({
     distractors: {
         numberOfDistractors: { type: Number, min: 1, default: 3 },
         distractorQuery: { type: String, required: true },
-        distractorList: [{ type: String }]
+        distractorResponse: [{ type: String }]
     }
 }, {collection: 'stubs'});
 

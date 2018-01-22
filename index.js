@@ -14,7 +14,7 @@ app.use(express.static('public'));
 app.set('views', __dirname + '/views');
 app.set('view engine', 'jsx');
 app.engine('jsx', require('express-react-views').createEngine());
-
+ 
 const pbInstance = require('./event-pubsub/subscribe');
 
 require("./routes")(app, {});

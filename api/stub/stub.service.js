@@ -1,9 +1,10 @@
 const StubModel = require('./stub.entity');
+//const wikiService = require('.wikidata-sdk')
 
 const addNewStub = function(stubInstance, done) {
     stubInstance.save((err, stubResponse) => {
         if(err) {
-            consose.error('Error saving stub: ', stub.questionStub);
+            console.error('Error saving stub: ', stub.questionStub);
             done(err);
         } else {
             done(null, stubResponse);

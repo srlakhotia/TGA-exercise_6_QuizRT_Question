@@ -17,6 +17,7 @@ const addNewQuestion = function(questionData, done) {
     });
     question.correctOption = questionData.correctOption;
     question.difficulty = questionData.difficulty || question.difficulty;
+    questionData.analytics = questionData.analytics || {};
     question.analytics.ansTime = questionData.analytics.ansTime || question.analytics.ansTime;
     question.analytics.correctness = questionData.analytics.correctness || question.analytics.correctness;
     question.analytics.askedCount = questionData.analytics.askedCount || question.analytics.askedCount;

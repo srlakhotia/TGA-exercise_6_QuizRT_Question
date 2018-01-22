@@ -4,14 +4,7 @@ class addStubForm extends React.Component {
     render() {
         return (
             <form>
-                <div className="form-group">
-                    <label>Topic</label>
-                    <input className="form-control"
-                           ref={(input) => { this.topicName = input; }}
-                        type="text">
-                    </input>
-                </div>
-                <div className="form-group">
+                <div>
                     <label>Add question stub</label>
                     <textarea className="form-control" ref={(input) => { this.topicName = input; }}></textarea>
                 </div>
@@ -39,7 +32,9 @@ class addStubForm extends React.Component {
                 </div>
 
             </form>
-        );
+            )
+
+
     }
 }
 

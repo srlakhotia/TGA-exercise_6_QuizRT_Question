@@ -1,0 +1,1 @@
+module.exports = require('./sparql.router');

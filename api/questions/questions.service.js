@@ -1,5 +1,5 @@
 const QuestionModel = require('./questions.entity');
-const publishService = require('../../event-pubsub/publish');
+//const publishService = require('../../event-pubsub/publish');
 
 const addNewQuestion = function(questionInstance, done) {
     questionInstance.save((err, savedQuestion) => {
@@ -7,7 +7,7 @@ const addNewQuestion = function(questionInstance, done) {
             console.error('Error Saving question:', question.label);
             done(err);
         } else {
-            publishService.onQuestionAdd(parameters);
+        //    publishService.onQuestionAdd(parameters);
             done(null, savedQuestion);
         }
     });

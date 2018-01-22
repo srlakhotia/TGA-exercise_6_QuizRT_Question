@@ -67,7 +67,7 @@ router.get('/', function(req, res){
         }
     }
  */
-router.post ("/add-question", (req, res) => {
+router.post("/add-question", (req, res) => {
     try{
         controller.addNewQuestion(req.body,(err, result) => {
             if(err){
@@ -159,6 +159,21 @@ router.post('/update-question-analytics', (req, res) => {
 
     } catch (err) {
         console.error('questions.router: Some error in post request (/questions/add)', err);
+        res.status(500).send({error: 'Unexpected internal error, please try later..!'});
+    }
+});
+
+router.post('/add-questions-from-stub', (req, res) => {
+    try{
+        controller.addBulkQuestionFromStub(req.body.questionData, req.body.questionStub, (err, result) => {
+            if(err){
+                console.error('Error in inserting bulk questions, and here is the error \n', err);
+                res.status(400).send({error: 'Error in inserting bulk questions'});
+            }
+            res.send(result);
+        });
+    } catch(err) {
+        console.error('questions.router: Some error in post request (/questions/add-bulk-question)', err);
         res.status(500).send({error: 'Unexpected internal error, please try later..!'});
     }
 });

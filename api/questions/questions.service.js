@@ -13,7 +13,6 @@ const addNewQuestion = function(questionInstance, done) {
     });
 };
 
-
 const getQuestions = function (params, done) {
     let query = {
             "topics": params.topic,

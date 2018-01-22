@@ -3,7 +3,7 @@ var React = require('react');
 class addStubForm extends React.Component {
     render() {
         return (
-            <form method="post" action="/stubs/add-stub">
+            <form method="post" id="add-stub-form" action="/stubs/add-stub">
                 <div>
                     <label htmlFor="topic">Topic</label>
                     <input type="text" id="topic" name="topic" className="form-control" ref={(input) => { this.topicName = input; }} />

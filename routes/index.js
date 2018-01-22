@@ -9,7 +9,7 @@ module.exports = (app, config, express) => {
     });
 
     app.get("/add-stub", (req, res) => {
-        res.render('add-stub', {
+        res.render('index', {
             'nav' : {
                 'selectedNode' : 'add-stub'
             }

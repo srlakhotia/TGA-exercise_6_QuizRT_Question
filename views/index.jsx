@@ -1,6 +1,6 @@
 var React = require('react');
 var DefaultLayout = require('./layouts/default-layout');
-var AddStubForm = require('./add-question/add-stub-form');
+var AddStubForm = require('./add-stub/add-stub-form');
 var Navigation = require('./navigation/index');
 
 class indexPage extends React.Component {

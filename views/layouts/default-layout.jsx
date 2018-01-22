@@ -12,6 +12,8 @@ class DefaultLayout extends React.Component {
                 </head>
                 <body>
                     {this.props.children}
+
+                    <script src="/js/create-stub.js"></script>
                 </body>
             </html>
         );

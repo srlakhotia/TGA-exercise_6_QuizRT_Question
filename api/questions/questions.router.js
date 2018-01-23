@@ -2,6 +2,8 @@ const router = require('express').Router();
 const controller = require('./questions.controller');
 
 
+
+
 const validateRequestBody = (req, res, context, message = 'request body is blank') => {
     if(req.body === {}) {
         console.error(context , ' ' , message  , err);
@@ -67,6 +69,9 @@ router.get('/', function(req, res){
         }
     }
  */
+
+//TODO - add json schema validator to validate the error in input data.
+
 router.post("/add-question", (req, res) => {
     try{
         controller.addNewQuestion(req.body,(err, result) => {

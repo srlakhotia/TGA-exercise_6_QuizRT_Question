@@ -46,7 +46,7 @@ module.exports = (app, config, express) => {
     app.post("/trigger-analytics-update-event", (req, res) => {
         try{
             publishService.onQuestionAnalyticsUpdate(req.body);
-            res.send("happy now???")
+            res.send({"status":"success"});
         } catch (e){
             res.status(400).send({error: "what a programer you are?"});
         }

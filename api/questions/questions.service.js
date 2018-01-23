@@ -40,6 +40,19 @@ const getQuestions = function (params, done) {
         });
 };
 
+/**
+ * Assumptions:
+ * 1. ignore if the id is not available, just make a log
+ * 2. increase the attempt data
+ * 3. modify the difficulty level ( there should be a separate service , but as of now we are keeping it simple
+ *
+ * @param data ( ideally a question object )
+ * @param done ( callback function for future use )
+ */
+const updateQuestionAnalytics = (data, done) => {
+
+};
+
 
 module.exports = {
     addNewQuestion,

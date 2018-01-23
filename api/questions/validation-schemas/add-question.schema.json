@@ -1,0 +1,26 @@
+{
+    "$schema": "http://json-schema.org/draft-06/schema#",
+    "title": "Add question",
+    "description": "A question data that need to be added",
+    "type": "object",
+    "properties": {
+        "label": {
+            "description": "question literal",
+            "type": "string"
+        },
+        "image": {
+            "description": "question image if available",
+            "type": "string"
+        },
+        "topics": {
+            "description": "question topics",
+            "type": "array",
+            "items": {
+                "type": "string"
+            },
+            "minItems": 1,
+            "uniqueItems": true
+        }
+    },
+    "required": [ "label", "topics" ]
+}

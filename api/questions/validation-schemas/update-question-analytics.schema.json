@@ -1,0 +1,28 @@
+{
+    "$schema": "http://json-schema.org/draft-06/schema#",
+    "title": "Update question analytics",
+    "description": "Analytics schema object for a specified question",
+    "type": "object",
+    "properties": {
+        "id": {
+            "description": "question literal",
+            "type": "string"
+        },
+        "analytics": {
+            "description": "Analytics object",
+            "type": "object",
+            "properties" : {
+                "answerTime" : {
+                    "type" : "number",
+                    "description": "Time taken to answer"
+                },
+                "correctness" : {
+                    "type" : "boolean",
+                    "description": "Time taken to answer"
+                }
+            },
+            "required" : ["answerTime", "correctness"]
+        }
+    },
+    "required": [ "label", "analytics" ]
+}

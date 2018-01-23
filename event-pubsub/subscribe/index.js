@@ -6,6 +6,7 @@ const connection = require('../pubsubConnection');
 connection.on('gameEngine:questionAttemped', (data, channel) => {
     //update question analytics along with difficulty level
     //need to know what data gameEngine produces
+    console.log(data);
 });
 
 

@@ -14,6 +14,7 @@ class DefaultLayout extends React.Component {
                     {this.props.children}
 
                     <script src="/js/create-stub.js"></script>
+                    <script src="/js/event-mocking.js"></script>
                 </body>
             </html>
         );

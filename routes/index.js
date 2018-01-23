@@ -1,3 +1,5 @@
+var publishService = require("../event-pubsub/publish");
+
 module.exports = (app, config, express) => {
 
     app.get("/", (req, res) => {
@@ -19,7 +21,7 @@ module.exports = (app, config, express) => {
     app.get("/update-stub", (req, res) => {
         res.render('update-stub', {
             'nav' : {
-                'selectedNode' : 'udpate-stub'
+                'selectedNode' : 'update-stub'
             }
         });
     });
@@ -30,6 +32,25 @@ module.exports = (app, config, express) => {
                 'selectedNode' : 'edit-question'
             }
         });
+    });
+
+    app.get("/data-mocking", (req, res) => {
+        res.render('data-event-mocking', {
+            'nav' : {
+                'selectedNode' : 'data-event-mocking'
+            }
+        });
+    });
+
+    // This is temporary routing for testing events - after integration
+    app.post("/trigger-analytics-update-event", (req, res) => {
+        try{
+            publishService.onQuestionAnalyticsUpdate(req.body);
+            res.send("happy now???")
+        } catch (e){
+            res.status(400).send({error: "what a programer you are?"});
+        }
+
     });
 
 };

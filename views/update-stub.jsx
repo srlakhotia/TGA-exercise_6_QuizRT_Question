@@ -9,7 +9,7 @@ class indexPage extends React.Component {
     render() {
         return (
             <DefaultLayout>
-                <Navigation></Navigation>
+                <Navigation data={this.props.nav}></Navigation>
                 <div className="container">
                     <h1>Search a stub</h1>
                     <FindStub></FindStub>

@@ -1,20 +1,5 @@
 (function($){
     let questionStubSet;
-    const sanitizeWikiDataResponse = function sanitizeWikiDataResponse(rawData) {
-        let fetchedHeads = rawData.head.vars.filter((head) => {
-            return head.lastIndexOf('Label') === (head.length - 5);
-        });
-
-        let fetchedSets = [];
-        rawData.results.bindings.forEach((resSet) => {
-            let currentSet = {};
-            fetchedHeads.forEach((head) => {
-                currentSet[head] = resSet[head] ? resSet[head].value : '';
-            });
-            fetchedSets.push(currentSet);
-        });
-        return fetchedSets;
-    };
 
     function createBulkQuestions(questionData, questionStub) {
         $.ajax({
@@ -34,6 +19,36 @@
         });
     }
 
+    const createDistractorOptions = (dataForQuestions, questionStubSet, callback) => {
+        let keys = Object.keys(dataForQuestions[0]),
+            resCount = 0;
+        
+        dataForQuestions.forEach((dataInst) => {
+            let distractorQuery = questionStubSet.distractors.distractorQuery;
+            keys.forEach((key) => {
+                let reg = new RegExp('{{' + key + '}}', 'g');
+                distractorQuery = distractorQuery.replace(reg, dataInst[key] ? dataInst[key].value : '');
+            });
+            dataInst.falseOptions = [];
+            $.ajax({
+                "url": `/sparql/sparql-to-json?sparquery=${distractorQuery}`,
+                "success": res => {
+                    ++resCount;
+                    dataInst.falseOptions = [res[0], res[1], res[2]];
+                    if(resCount === dataForQuestions.length) {
+                        callback(dataForQuestions);
+                    }
+                },
+                "error": err => {
+                    ++resCount;
+                    if(resCount === dataForQuestions.length) {
+                        callback(dataForQuestions);
+                    }
+                }  
+            });
+        });
+    };
+
     function onStubCreationSuccess (data) {
         $('#add-stub-form').trigger('reset');
         questionStubSet = data;
@@ -44,8 +59,11 @@
             "success": (response) => {
                 $("html, body").animate({ scrollTop: $(document).height() }, 500);
                 $('#stub-add-success').show().fadeOut(2000);
-                let dataForQuestions = sanitizeWikiDataResponse(response);
-                createBulkQuestions(dataForQuestions, questionStubSet);
+                let dataForQuestions = response;
+
+                createDistractorOptions(dataForQuestions, questionStubSet, (respData) => {
+                    createBulkQuestions(dataForQuestions, questionStubSet);
+                });
             },
             "error": (err) => {
                 console.log('Error in sparql-to-json ajax '+err);

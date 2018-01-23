@@ -12,10 +12,6 @@ const addNewStub = function(stubData, done) {
     stub.distractors.distractorQuery = stubData.distractorQuery;
     //Placeholder for distractor fields
     stub.distractors.distractorResponse = stubData.distractorResponse;
-   // stub.distractors.distractorList = [];
-    /* stubData.distractors.distractorList.forEach((st) => {
-        stub.distractors.distractorList.push(st); */
-    // });
 
     stubService.addNewStub(stub, done);
 };

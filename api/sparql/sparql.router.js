@@ -44,7 +44,7 @@ router.get('/sparql-to-json', (req, res) => {
 
     const url = wdk.sparqlQuery(params.sparquery);
     getJsonFromURL(url, (jsonData) => {
-        res.send(jsonData);
+        res.send(wdk.simplifySparqlResults(jsonData));
     });
 });
 

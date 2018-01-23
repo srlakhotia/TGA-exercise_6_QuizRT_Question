@@ -26,36 +26,53 @@ const addNewQuestion = function(questionData, done) {
     questionService.addNewQuestion(question, done);
 };
 
-const addBulkQuestionFromStub = function(questionData, questionStub, done) {
-    const questionLabels = questionData.length ? Object.keys(questionData[0]) : [];
-    const formulateQuestionObjectFromStub = function(questionDataObj) {
-        let questionData = {};
-        const replacePlaceholders = function(key) {
-            if(!key) {
-                return;
-            }
-            let questionLabel = '';
-            questionLabels.forEach((label) => {
-                let reg = new RegExp('{{' + label + '}}', 'g');
-                key = questionLabel = key.replace(reg, questionDataObj[label]);
-            });
-            return questionLabel;
-        }
-        questionData.label = replacePlaceholders(questionStub.questionStub);
-        questionData.image = replacePlaceholders(questionStub.image);
-        questionData.topics = questionStub.topics;
-        questionData.correctOption = 1;
-        questionData.options = [{
-            "_id": 1,
-            answer: replacePlaceholders(questionStub.correctResponse)
-        }];
+const formulateQuestionObjectFromStub = function(questionDataObj, questionStub, questionLabels) {
+    let question = {};
 
-        return questionData;
-    };
+    const replacePlaceholders = function(key, ind) {
+        if(!key) {
+            return;
+        }
+        let questionLabel = '';
+        questionLabels.forEach((label) => {
+            let reg = new RegExp('{{' + label + '}}', 'g');
+            if(questionDataObj[label]) {
+                key = questionLabel = key.replace(reg, (questionDataObj[label] ? questionDataObj[label].label : ''));
+            } else if(questionDataObj.falseOptions && questionDataObj.falseOptions[ind]){
+                key = questionLabel = key.replace(reg, (questionDataObj.falseOptions[ind][label] ? questionDataObj.falseOptions[ind][label].label : ''));
+            }
+        });
+        return questionLabel;
+    }
+    question.label = replacePlaceholders(questionStub.questionStub);
+    question.image = replacePlaceholders(questionStub.image);
+    question.topic = questionStub.topic;
+    question.correctOption = 1;
+    question.options = [{
+        "_id": 1,
+        "answer": replacePlaceholders(questionStub.correctResponse)
+    }, {
+        "_id": 2,
+        "answer": replacePlaceholders(questionStub.distractors.distractorResponse, 0)
+    }, {
+        "_id": 3,
+        "answer": replacePlaceholders(questionStub.distractors.distractorResponse, 1)
+    }, {
+        "_id": 4,
+        "answer": replacePlaceholders(questionStub.distractors.distractorResponse, 2)
+    }];
+
+    return question;
+};
+        
+const addBulkQuestionFromStub = function(questionData, questionStub, done) {
     let doneCount = 0;
+    let questionLabels = questionData.length ? Object.keys(questionData[0]) : [];
+    questionLabels.push(...Object.keys(questionData[0].falseOptions[0]));
+    questionLabels.splice(questionLabels.indexOf('falseOptions'), 1);
+
     questionData.forEach((questionInst) => {
-        addNewQuestion(formulateQuestionObjectFromStub(questionInst), (err, success) => {
-            doneCount++;
+        addNewQuestion(formulateQuestionObjectFromStub(questionInst, questionStub, questionLabels), (err, success) => {
             if(++doneCount == questionData.length) {
                 done(null, questionData);
             }

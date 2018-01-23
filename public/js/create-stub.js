@@ -28,7 +28,9 @@
             "success": (response) => {
                 console.log('HURRAY questions are added:: ', response);
             },
-            "error": (err) => {}
+            "error": (err) => {
+                console.log('Error in add-questions-from-stub ajax '+err);
+            }
         });
     }
 
@@ -45,7 +47,9 @@
                 let dataForQuestions = sanitizeWikiDataResponse(response);
                 createBulkQuestions(dataForQuestions, questionStubSet);
             },
-            "error": (err) => {}
+            "error": (err) => {
+                console.log('Error in sparql-to-json ajax '+err);
+            }
         });
     }
 
@@ -57,7 +61,9 @@
             "type"          :"POST",
             "data-type"     : "JSON",
             "data"          : $("#add-stub-form").serialize(),
-            "error"         : function(e){}
+            "error"         : function(e){
+                console.log('Error in add-stub: '+e);
+            }
         });
     });
 

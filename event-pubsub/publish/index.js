@@ -11,8 +11,7 @@ const onQuestionUpdate = (data) => {
 
 /* This is for mock testing, when other microservices are not integrated.*/
 const onQuestionAnalyticsUpdate = (data) => {
-    console.log("++++++++++",nrp);
-    nrp.emit("question:updateAnalytics", data);
+    nrp.emit("gameEngine:questionAttempted", data);
 };
 
 module.exports = {

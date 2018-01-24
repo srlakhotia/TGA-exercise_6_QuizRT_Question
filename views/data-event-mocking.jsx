@@ -14,11 +14,16 @@ class indexPage extends React.Component {
                     <form id="questionAttempt">
                         <div className="form-group">
                             <label>Question Id</label>
-                            <input type="text" value="1" className="form-control" name="questionId"/>
+                            <input type="text" value="5a6841cc97bf46c4b1500fd9" className="form-control" name="questionId"/>
                         </div>
                         <div className="form-group">
                             <label>Time taken to answer</label>
                             <input type="text" value="10" className="form-control" name="timeTaken" />
+                        </div>
+
+                        <div className="form-group">
+                            <label>Is answer correct</label>
+                            <input type="text" value="true" className="form-control" name="timeTaken" />
                         </div>
 
                         <div className="form-group">
@@ -35,3 +40,4 @@ class indexPage extends React.Component {
 }
 
 module.exports = indexPage;
+

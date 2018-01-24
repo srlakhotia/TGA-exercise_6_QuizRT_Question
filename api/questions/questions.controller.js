@@ -84,8 +84,12 @@ const updateQuestion = (params, done) => {
     return done(null, parameters);
 };
 
-const updateQuestionAnalytics = (params, done) => {
-    return done(null, parameters);
+/**
+ * Data should be
+ * @param data <object>
+ */
+const updateQuestionAnalytics = (data) => {
+
 };
 
 module.exports = {

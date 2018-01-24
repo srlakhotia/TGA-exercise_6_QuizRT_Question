@@ -63,8 +63,8 @@ const updateQuestionAnalytics = (data, done) => {
     QuestionModel.findById(data._id + "", function (err, model) {
         if (err) return done(err);
 
+        let newAverageTime = getNewAverageTime(model.analytics.askedCount, data.timeTaken * 1 , model.analytics.ansTime);
         let askedCount = ++model.analytics.askedCount;
-        let newAverageTime = getNewAverageTime(model.analytics.askedCount, data.timeTaken , model.analytics.ansTime);
         let newCorrectness = (data.correctness === "true") ? 1 : -1;
 
         model.set({

@@ -4,7 +4,7 @@ const lod = ["easy", "medium", "hard"];
 let schema = new mongoose.Schema({
     label: { type: String, required: true },
     image: { type: String, default: null },
-    topics: [ {type: String} ],
+    topic: { type: String, required: true },
     options: [{
         _id: { type: Number, required: true },
         answer: { type: String, required: true }

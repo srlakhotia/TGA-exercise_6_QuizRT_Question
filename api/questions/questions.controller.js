@@ -10,7 +10,7 @@ const addNewQuestion = function(questionData, done) {
 
     question.label = questionData.label;
     question.image = questionData.image;
-    question.topics = questionData.topics;
+    question.topic = questionData.topic;
     question.options = [];
     questionData.options.forEach((questionOption) => {
         question.options.push(questionOption);

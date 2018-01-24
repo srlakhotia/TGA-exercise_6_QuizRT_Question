@@ -43,7 +43,7 @@ const formulateQuestionObjectFromStub = function(questionDataObj, questionStub, 
             }
         });
         return questionLabel;
-    }
+    };
     question.label = replacePlaceholders(questionStub.questionStub);
     question.image = replacePlaceholders(questionStub.image);
     question.topic = questionStub.topic;
@@ -89,7 +89,9 @@ const updateQuestion = (params, done) => {
  * @param data <object>
  */
 const updateQuestionAnalytics = (data) => {
+    questionService.updateQuestionAnalytics(data, (data) => {
         console.log(data);
+    });
 };
 
 module.exports = {

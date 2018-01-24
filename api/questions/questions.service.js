@@ -40,6 +40,16 @@ const getQuestions = function (params, done) {
         });
 };
 
+const getNewAverageTime = (askedCount, timeTaken, averageAnsTime) => {
+    return parseInt((askedCount * averageAnsTime + timeTaken) / (askedCount + 1), 10);
+};
+
+const getUpdatedDifficultyLevel = (averageTime) => {
+    if(averageTime > 15) return "hard";
+    if(averageTime > 8) return "medium";
+    return "easy";
+};
+
 /**
  * Assumptions:
  * 1. ignore if the id is not available, just make a log
@@ -50,11 +60,32 @@ const getQuestions = function (params, done) {
  * @param done ( callback function for future use )
  */
 const updateQuestionAnalytics = (data, done) => {
+    QuestionModel.findById(data._id + "", function (err, model) {
+        if (err) return done(err);
 
+        let askedCount = ++model.analytics.askedCount;
+        let newAverageTime = getNewAverageTime(model.analytics.askedCount, data.timeTaken , model.analytics.ansTime);
+        let newCorrectness = (data.correctness === "true") ? 1 : -1;
+
+        model.set({
+            difficulty : getUpdatedDifficultyLevel(newAverageTime),
+            analytics : {
+                lastAsked : Date.now(),
+                askedCount :askedCount,
+                ansTime: newAverageTime,
+                correctness : newCorrectness
+            }
+        });
+        model.save(function (err, updatedModel) {
+            if (err) return done(err);
+            done(updatedModel);
+        });
+    });
 };
 
 
 module.exports = {
     addNewQuestion,
-    getQuestions
+    getQuestions,
+    updateQuestionAnalytics
 };

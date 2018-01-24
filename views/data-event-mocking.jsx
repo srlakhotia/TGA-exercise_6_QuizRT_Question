@@ -16,7 +16,7 @@ class indexPage extends React.Component {
                             <label>Question Id</label>
                             <input type="text"
                                    defaultValue="5a6841cc97bf46c4b1500fd9"
-                                   className="form-control" name="questionId"/>
+                                   className="form-control" name="_id"/>
                         </div>
                         <div className="form-group">
                             <label>Time taken to answer</label>
@@ -29,7 +29,7 @@ class indexPage extends React.Component {
                             <label>Is answer correct</label>
                             <input type="text"
                                    defaultValue="true"
-                                   className="form-control" name="timeTaken" />
+                                   className="form-control" name="correctness" />
                         </div>
 
                         <div className="form-group">

@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const controller = require('./stub.controller');
 
-//Get Stubs
+//Get Stubs - call getStub method from stub controller
 router.get('/', function(req, res){
     try {
         let reqParams = req;
@@ -22,7 +22,7 @@ router.get('/', function(req, res){
     }
 });
 
-//Add new stub
+//Add new stub - call addNewStub method from stub controller
 router.post('/add-stub', (req, res) => {
     try {
         controller.addNewStub(req.body, (err, result) => {

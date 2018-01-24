@@ -9,7 +9,7 @@ class addStubForm extends React.Component {
                     <input type="text"
                            id="topic"
                            name="topic"
-                           value="Singer"
+                           defaultValue="Singer"
                            className="form-control"/>
                 </div>
                 <div className="form-group">
@@ -17,7 +17,7 @@ class addStubForm extends React.Component {
                     <input type="text"
                            name="questionStub"
                            id="questionStub"
-                           value = "Where was {{singer}} born?"
+                           defaultValue = "Where was {{singer}} born?"
                            className="form-control"/>
                 </div>
                 <div className="form-group">
@@ -25,7 +25,7 @@ class addStubForm extends React.Component {
                     <input type="text"
                            id="correctResponse"
                            name="correctResponse"
-                           value="{{place_of_birth}}, {{country}}"
+                           defaultValue="{{place_of_birth}}, {{country}}"
                            className="form-control"/>
                 </div>
 
@@ -33,7 +33,7 @@ class addStubForm extends React.Component {
                     <label htmlFor="questionQuery">Question Query</label>
                     <textarea className="form-control"
                             name="questionQuery"
-                              value = "SELECT ?singer ?singerLabel ?place_of_birth ?place_of_birthLabel ?country ?countryLabel WHERE { SERVICE wikibase:label { bd:serviceParam wikibase:language '[AUTO_LANGUAGE],en'. } ?singer wdt:P106 wd:Q177220. OPTIONAL { ?singer wdt:P19 ?place_of_birth. ?place_of_birth wdt:P17 ?country} } LIMIT 100"
+                              defaultValue = "SELECT ?singer ?singerLabel ?place_of_birth ?place_of_birthLabel ?country ?countryLabel WHERE { SERVICE wikibase:label { bd:serviceParam wikibase:language '[AUTO_LANGUAGE],en'. } ?singer wdt:P106 wd:Q177220. OPTIONAL { ?singer wdt:P19 ?place_of_birth. ?place_of_birth wdt:P17 ?country} } LIMIT 100"
                             id="questionQuery">
                     </textarea>
                 </div>
@@ -44,7 +44,7 @@ class addStubForm extends React.Component {
                            name="distractorResponse"
                            id="distractorResponse"
                            className="form-control"
-                           value="{{city}}, {{country}}"/>
+                           defaultValue="{{city}}, {{country}}"/>
                 </div>
 
                 <div className="form-group">
@@ -52,7 +52,7 @@ class addStubForm extends React.Component {
                     <textarea name="distractorQuery"
                               id="distractorQuery"
                               className="form-control"
-                              value ="SELECT DISTINCT ?city ?cityLabel WHERE { SERVICE wikibase:label { bd:serviceParam wikibase:language '[AUTO_LANGUAGE],en'. } ?city wdt:P31 wd:Q515. ?city wdt:P17 wd:{{country}}. FILTER NOT EXISTS { ?city wdt:Q515 wd:{{place_of_birth}}. } } LIMIT 10">
+                              defaultValue ="SELECT DISTINCT ?city ?cityLabel WHERE { SERVICE wikibase:label { bd:serviceParam wikibase:language '[AUTO_LANGUAGE],en'. } ?city wdt:P31 wd:Q515. ?city wdt:P17 wd:{{country}}. FILTER NOT EXISTS { ?city wdt:Q515 wd:{{place_of_birth}}. } } LIMIT 10">
 
                     </textarea>
                 </div>

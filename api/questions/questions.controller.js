@@ -89,7 +89,7 @@ const updateQuestion = (params, done) => {
  * @param data <object>
  */
 const updateQuestionAnalytics = (data) => {
-
+        console.log(data);
 };
 
 module.exports = {
